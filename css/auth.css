@@ -15,6 +15,7 @@ body, input, button, textarea
 
 html, body
 {
+    min-width: 320px;
     height: 100vh;
     min-height: 100%;
 }
