@@ -46,9 +46,3 @@ if (isset($_POST['registerNext']))
 $registerFirstName = htmlspecialchars($_POST['registerFirstName']);
 $registerLasttName = htmlspecialchars($_POST['registerLastName']);
 $registerDate = htmlspecialchars($_POST['registerDate']);
-
-echo $registerEmail . "<BR>";
-echo $registerPassword . "<BR>";
-echo $registerFirstName . "<BR>";
-echo $registerLasttName . "<BR>";
-echo $registerDate . "<BR>";

@@ -7,7 +7,7 @@
     padding: 0;
 }
 
-body, input, button, textarea
+body, input, button, textarea, a
 {
     font-family: "Comfortaa", sans-serif;
     font-size: 18px;
@@ -104,12 +104,21 @@ body
     transform: scale(1);
 }
 
-.authForm h2, .authForm h3
+.authForm h2
 {
     margin-bottom: auto;
     padding-bottom: 100px;
 
     text-align: center;
+}
+
+.authForm h3
+{
+    font-size: 16px;
+
+    text-align: center;
+
+    color: #012F3F;
 }
 
 .authForm p
@@ -118,6 +127,19 @@ body
     padding-top: 100px;
 
     color: rgb(160, 160, 160);
+}
+
+.authForm a
+{
+    transition: 0.3s all;
+    text-decoration: none;
+
+    color: rgb(160, 160, 160);
+}
+
+.authForm a:hover
+{
+    color: #012F3F;
 }
 
 .authTextArea

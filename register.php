@@ -23,10 +23,11 @@
 <? if ($_COOKIE['check'] != true)
 {
   echo '
-        <input type="email" placeholder="Почта" name="registerEmail" class="authInput authText" require>
-        <input type="password" placeholder="Пароль" name="registerPassword" class="authInput authText" require>
-        <button name="registerNext" class="authInput authButton">ДАЛЕЕ</button>
+        <input type="email" placeholder="Почта" name="registerEmail" class="authInput authText" required>
+        <input type="password" placeholder="Пароль" name="registerPassword" class="authInput authText" required>
         <h3>'. $_COOKIE["message"] .'</h3>
+        <button name="registerNext" class="authInput authButton">ДАЛЕЕ</button>
+        <a href="login.php">Войти</a>
       ';
       }
 ?>
@@ -37,11 +38,11 @@
         <input type="hidden" name="registerEmail" value="'.$_COOKIE['email'].'">
         <input type="hidden" name="registerPassword" value="'.$_COOKIE['password'].'">
 
-        <input type="text" placeholder="Имя" name="registerFirstName" class="authInput authText" require>
-        <input type="text" placeholder="Фамилия" name="registerLastName" class="authInput authText" require>
-        <input type="text" placeholder="Дата рождения" name="registerDate" class="authInput authText" require>
-        <input type="text" placeholder="Страна" name="registerCountry" class="authInput authText"require>
-        <input type="date" placeholder="Город" name="registerCity" class="authInput authText" style="width: unset" require>
+        <input type="text" placeholder="Имя" name="registerFirstName" class="authInput authText" required>
+        <input type="text" placeholder="Фамилия" name="registerLastName" class="authInput authText" required>
+        <input type="text" placeholder="Дата рождения" name="registerDate" class="authInput authText" required>
+        <input type="text" placeholder="Страна" name="registerCountry" class="authInput authText"required>
+        <input type="date" placeholder="Город" name="registerCity" class="authInput authText" style="width: unset" required>
         <textarea placeholder="Пару слов о себе" name="registerInfo" class="authInput authText authTextArea"> </textarea>
         <button name="registerButton" class="authInput authButton">ЗАРЕГИСТРИРОВАТЬСЯ</button>
         ';
