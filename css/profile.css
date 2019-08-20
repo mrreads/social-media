@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
+
+*, *::before, *::after
+{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, input, button, textarea, a
+{
+    font-family: "Comfortaa", sans-serif;
+    font-size: 18px;
+}
+
+.profile_info
+{
+    display: flex;
+
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+.profile-image, .profile-image-input
+{
+    width: 150px;
+    height: 150px;
+
+    border-radius: 100%;
+
+    object-fit: contain;
+}
+
+.profile-image-input
+{
+    position: absolute;
+
+    cursor: pointer;
+
+    opacity: 0;
+}
