@@ -1,40 +1,3 @@
-.profile_info, .profile-setting, .nav-menu
-{
-    display: flex;
-
-    width: 450px;
-    min-width: 300px;
-    margin: 50px 25px 25px 25px;
-    padding: 0px 25px 25px 25px;
-
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-    align-items: center;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    justify-content: content;
-}
-
-.nav-menu
-{
-    width: 300px;
-    padding: 15px;
-}
-
-.nav-menu a
-{
-    transition: 0.3s all;
-
-    color: rgba(0,0,0,0.5);
-}
-
-.nav-menu a:hover
-{
-    color: rgba(0,0,0,1);
-}
-
 .profile-image-form, .profile-image, .profile-image-input
 {
     width: 150px;
@@ -89,12 +52,6 @@
 .profile-birthday
 {
     font-size: 14px;
-}
-
-
-.profile-setting
-{
-    /* margin-top: 15px; */
 }
 
 .profile-setting input

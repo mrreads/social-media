@@ -36,6 +36,8 @@ hr
 
     border: 0;
     border-top: 1px solid rgba(0,0,0,0.3);
+
+    align-self: center;
 }
 
 .content
@@ -49,4 +51,41 @@ hr
     align-items: flex-start;
     flex-flow: row wrap;
     justify-content: center;
+}
+
+.nav-menu, .profile_info, .profile-setting, .audio-list, .your-list
+{
+    display: flex;
+
+    width: 450px;
+    min-width: 300px;
+    margin: 50px 25px 25px 25px;
+    padding: 0px 25px 25px 25px;
+
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+    align-items: center;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+    justify-content: content;
+}
+
+.nav-menu
+{
+    width: 300px;
+    padding: 15px;
+}
+
+.nav-menu a
+{
+    transition: 0.3s all;
+
+    color: rgba(0,0,0,0.5);
+}
+
+.nav-menu a:hover, #active
+{
+    color: rgba(0,0,0,1);
 }

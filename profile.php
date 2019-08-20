@@ -23,7 +23,9 @@
 <body>
   <div class="content">
     <div class="nav-menu">
-      <a href="./profile.php">Профиль</a>
+      <a href="./profile.php" id="active">Профиль</a>
+      <hr>
+      <a href="./audio.php">Аудио</a>
       <hr>
       <a href="./logout.php">Выйти</a>
     </div>
