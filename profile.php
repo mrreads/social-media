@@ -37,7 +37,7 @@
       <p class="profile-birthday"> <? echo $dataUser['user_birthday']. ", ".DB::query("SELECT TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) AS age FROM users WHERE id_user = $idUser")['age']. " лет"; ?> </p>
       <p class="profile-location"> <? echo $dataUser['user_country'].", ".$dataUser['user_city']; ?> </p>
       <hr>
-      <p class="profile-info"> <? echo $dataUser['user_country'].", ".$dataUser['user_info']; ?> </p>
+      <p class="profile-info"> <? echo $dataUser['user_info']; ?> </p>
     </div>
 
     <form method="POST" action="./php/changeData.php" class="profile-setting">
