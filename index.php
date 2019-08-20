@@ -1,12 +1,11 @@
 <?php
 session_start();
 
-if(isset($_SESSION['id_user']))
+if (isset($_SESSION['id_user'])) 
 {
-  header('Location: profile.php');
+    header('Location: profile.php');
 }
-
-if(empty($_SESSION['id_user']))
+else 
 {
-  header('Location: login.php');
+    header('Location: login.php');
 }
