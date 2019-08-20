@@ -13,12 +13,12 @@ if (isset($_POST['loginButton']))
     {
         $dataUser = DB::query("SELECT id_user FROM users WHERE user_email = '$loginEmail' AND user_password = '$loginPassword'");
         $_SESSION['id_user'] = $dataUser['id_user'];
-        header('Location: ../../../profile.php');
+        header('Location: ./../profile.php');
     }
     else
     {
         setcookie("message", "Вы ввели неверные данные.", time() + 2, '/');
-        header('Location: ../../../login.php');
+        header('Location: ./../login.php');
     }
 }
 
@@ -34,12 +34,12 @@ if (isset($_POST['registerNext']))
         setcookie("check", true, time() + 2, '/');
         setcookie("email", $registerEmail, time() + 2, '/');
         setcookie("password", $registerPassword, time() + 2, '/');
-        header('Location: ../../../register.php');
+        header('Location: ./../../register.php');
     }
     else
     {
         setcookie("message", "Вы ввели существующие данные.", time() + 2, '/');
-        header('Location: ../../../register.php');
+        header('Location: ./../register.php');
     }
 }
 
