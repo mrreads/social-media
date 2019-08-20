@@ -65,6 +65,7 @@
         <audio autobuffer="autobuffer">
           <? echo '<source src="data:audio/mp3;base64,'.base64_encode( $data['audio_file'] ).'">'; ?>
         </audio>
+        <form action="./php/add-removeTrack.php" method="GET"> <button class="remove" value="<?echo $data['id_audio']?>" name='audioRemove'></button> </form>
       </div>
       <hr>
       <?
