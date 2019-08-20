@@ -1,45 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Comfortaa&display=swap");
-
-*, *::before, *::after
-{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body, input, button, textarea, a
-{
-    font-family: "Comfortaa", sans-serif;
-    font-size: 18px;
-}
-
-html, body
-{
-    width: 100%;
-    min-height: 100%;
-}
-
-body
-{
-    background-image: linear-gradient(-20deg, #E9DEFA 0%, #FBFCDB 100%);
-}
-
-a
-{
-    text-decoration: none;
-}
-
-.content
-{
-    display: flex;
-
-    padding: 15px;
-
-    align-items: flex-start;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
 .profile_info, .profile-setting, .nav-menu
 {
     display: flex;
@@ -133,14 +91,6 @@ a
     font-size: 14px;
 }
 
-hr
-{
-    width: 100%;
-    margin: 15px -20px;
-
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,0.3);
-}
 
 .profile-setting
 {
