@@ -40,9 +40,10 @@
 
         <input type="text" placeholder="Имя" name="registerFirstName" class="authInput authText" required>
         <input type="text" placeholder="Фамилия" name="registerLastName" class="authInput authText" required>
-        <input type="text" placeholder="Дата рождения" name="registerDate" class="authInput authText" required>
+        <input type="text" placeholder="Никнейм" name="registerNickName" class="authInput authText" required>
+        <input type="date" placeholder="Дата рождения" name="registerDate" class="authInput authText" required>
         <input type="text" placeholder="Страна" name="registerCountry" class="authInput authText"required>
-        <input type="date" placeholder="Город" name="registerCity" class="authInput authText" style="width: unset" required>
+        <input type="text" placeholder="Город" name="registerCity" class="authInput authText" style="width: unset" required>
         <textarea placeholder="Пару слов о себе" name="registerInfo" class="authInput authText authTextArea"> </textarea>
         <button name="registerButton" class="authInput authButton">ЗАРЕГИСТРИРОВАТЬСЯ</button>
         ';
