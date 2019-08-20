@@ -42,6 +42,8 @@ hr
 {
     display: flex;
 
+    max-width: 1440px;
+    margin: 0 auto;
     padding: 15px;
 
     align-items: flex-start;
