@@ -52,7 +52,21 @@
     color: rgba(0, 0, 0, 0.7);
 }
 
-.track form .add, .track form .remove
+.audio-list h3
+{
+    display: flex;
+
+    align-items: center;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.audio-list h3 span
+{
+    flex-grow: 1;
+}
+
+.track form .add, .track form .remove, .popup .remove, .audio-list h3 .add
 {
     min-width: 15px;
     height: 15px;
@@ -68,40 +82,67 @@
     background-size: contain;
 }
 
-.track form .add:hover, .track form .remove:hover
+.track form .add:hover, .track form .remove:hover, .popup .remove:hover, .audio-list h3 .add:hover
 {
     opacity: 0.7;
 }
 
-.track form
+.track form, .audio-list h3 .add
 {
     margin-left: auto;
 }
 
-.track form .add
+.track form .add, .audio-list h3 .add
 {
     background-image: url("./../img/icons/add.svg");
 }
 
-.track form .remove
+.track form .remove, .popup .remove
 {
     background-image: url("./../img/icons/remove.svg");
 }
 
-.popup
+.audio-list h3 .add
+{
+    opacity: 0.5;
+}
+
+.popup .remove
+{
+    margin-bottom: 50px;
+    margin-left: auto;
+
+    opacity: 0.4;
+}
+
+.popup-wrapper
 {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    z-index: 1;
+    top: 0;
 
+    display: none;
+
+    width: 100vw;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100vh;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.popup
+{
     display: flex;
 
-    margin: 50px;
+    margin: 0 auto;
     padding: 50px;
 
-    transform: translate(-50%, -50%);
-
+    align-items: center;
     flex-flow: column nowrap;
+    flex-grow: 0;
+    justify-content: center;
 }
 
 .popup input
@@ -159,5 +200,22 @@
 {
     font-size: 18px;
 
+    cursor: pointer;
     transform: scale(1);
+}
+
+@media screen and (max-width: 465px)
+{
+    .popup
+    {
+        padding: 50px 0px;
+    }
+    .popup .remove
+    {
+        padding-right: 55px;
+    }
+    .popup input
+    {
+        width: 90%;
+    }
 }

@@ -20,7 +20,9 @@
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/audio.css">
   <script src="./js/playAudio.js" defer></script>
+  <script src="./js/audioPopup.js" defer></script>
 </head>
+
 <body>
   <div class="content">
     <div class="nav-menu">
@@ -32,7 +34,7 @@
     </div>
 
     <div class="audio-list">
-      <h3> Все аудио</h3>
+      <h3> <span>Все Аудио</span> <button class="add"></button> </h3>
       <hr>
     <?
     foreach ($sql = DB::queryAll("SELECT * FROM `audio`") as $data)
@@ -76,11 +78,14 @@
   </div>
 </body>
 
-<form action="./php/musicUpload.php" method="POST" enctype="multipart/form-data" class="popup">
-  <input type="text" placeholder="Имя группы" name="author" required>
-  <input type="text" placeholder="Название песни" name="name" required>
-  <input type="file" class="profile-image-input" name="audio" required>
-  <input type="submit" value="ЗАГРУЗИТЬ" name="button">
-</form>
+<div class="popup-wrapper">
+  <form action="./php/musicUpload.php" method="POST" enctype="multipart/form-data" class="popup">
+    <button class="remove"></button>
+    <input type="text" placeholder="Имя группы" name="author" required>
+    <input type="text" placeholder="Название песни" name="name" required>
+    <input type="file" class="profile-image-input" name="audio" required>
+    <input type="submit" value="ЗАГРУЗИТЬ" name="button">
+  </form>
+</div>
 
 </html>
