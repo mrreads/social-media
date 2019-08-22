@@ -53,7 +53,7 @@ hr
     justify-content: center;
 }
 
-.nav-menu, .profile_info, .profile-setting, .audio-list, .your-list
+.nav-menu, .profile_info, .profile-setting, .audio-list, .your-list, .popup
 {
     display: flex;
 

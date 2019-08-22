@@ -87,3 +87,77 @@
 {
     background-image: url("./../img/icons/remove.svg");
 }
+
+.popup
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    display: flex;
+
+    margin: 50px;
+    padding: 50px;
+
+    transform: translate(-50%, -50%);
+
+    flex-flow: column nowrap;
+}
+
+.popup input
+{
+    width: 350px;
+    min-height: 65px;
+    margin: 20px 0;
+
+    text-align: center;
+
+    border: 0px solid white;
+}
+
+.popup input[type="text"]
+{
+    padding: 0 15px;
+
+    transition: 0.3s all;
+    transform: scale(0.97);
+
+    color: rgb(160, 160, 160);
+    border-bottom: 1px solid rgb(172, 172, 172);
+}
+
+.popup input[type="text"]:hover
+{
+    border-bottom: 1px solid rgb(172, 172, 172);
+}
+
+.popup input[type="text"]:focus
+{
+    transform: scale(1);
+
+    color: #012F3F;
+    border-bottom: 1px solid #012F3F;
+}
+
+.popup input[type="submit"]
+{
+    font-size: 16px;
+
+    display: flex;
+
+    transition: 0.3s all;
+    transform: scale(0.97);
+
+    color: white;
+    background-color: #012F3F;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.popup input[type="submit"]:focus, .popup input[type="submit"]:hover
+{
+    font-size: 18px;
+
+    transform: scale(1);
+}

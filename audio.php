@@ -75,4 +75,12 @@
 
   </div>
 </body>
+
+<form action="./php/musicUpload.php" method="POST" enctype="multipart/form-data" class="popup">
+  <input type="text" placeholder="Имя группы" name="author" required>
+  <input type="text" placeholder="Название песни" name="name" required>
+  <input type="file" class="profile-image-input" name="audio" required>
+  <input type="submit" value="ЗАГРУЗИТЬ" name="button">
+</form>
+
 </html>
