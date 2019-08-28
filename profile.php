@@ -1,13 +1,20 @@
 <?php
   session_start();
-  if(empty($_SESSION['id_user']))
+  if (empty($_SESSION['id_user']))
   {
     header('Location: login.php');
   }
 
+  $profileId = $_GET['id'];
   require_once(__DIR__ . '/php/DB.php');
   $idUser = (int)$_SESSION['id_user'];
-  $dataUser = DB::query("SELECT * FROM users WHERE id_user = $idUser");
+
+  if (empty($profileId))
+  {
+    header('Location: profile.php?id='.$idUser);
+  }
+
+  $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +30,7 @@
 <body>
   <div class="content">
     <div class="nav-menu">
-      <a href="./profile.php" id="active">Профиль</a>
+      <? echo '<a href="./profile.php?id='.$idUser.'" id="active">Профиль</a>';?>
       <hr>
       <a href="./audio.php">Аудио</a>
       <hr>
@@ -32,7 +39,7 @@
 
     <div class="profile_info">
       <form method="POST" action="php/imageUpload.php" enctype="multipart/form-data" class="profile-image-form">
-        <input type="file" class="profile-image-input" name="image" onchange="this.form.submit()">
+      <? if ($idUser == $profileId) { ?> <input type="file" class="profile-image-input" name="image" onchange="this.form.submit()"> <? } ?>
         <? echo '<img src="data:image/jpeg;base64,'.base64_encode( $dataUser['user_profileimage'] ).'" class="profile-image">'; ?>
       </form>
       <p class="profile-name"> <? echo $dataUser['user_firstname']." ".$dataUser['user_lastname']; ?> </p>
@@ -42,6 +49,9 @@
       <p class="profile-info"> <? echo $dataUser['user_info']; ?> </p>
     </div>
 
+<? if ($idUser == $profileId)
+{
+  ?>
     <form method="POST" action="./php/changeData.php" class="profile-setting">
       <label for="input-username">Никнейм</label>
       <input type="text" id="input-username" placeholder="Никнейм" value="<? echo $dataUser['user_nickname'];?>" name="nickname">
@@ -69,6 +79,9 @@
 
       <button>Сохранить информацию</button>
     </form>
+    <?
+}
+?>
   </div>
 </body>
 </html>
