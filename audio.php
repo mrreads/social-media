@@ -7,7 +7,6 @@
 
   require_once(__DIR__ . '/php/DB.php');
   $idUser = (int)$_SESSION['id_user'];
-  $dataUser = DB::query("SELECT * FROM users WHERE id_user = $idUser");
 ?>
 
 <!DOCTYPE html>
