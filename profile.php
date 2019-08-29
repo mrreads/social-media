@@ -50,6 +50,13 @@
       <p class="profile-location"> <? echo $dataUser['user_country'].", ".$dataUser['user_city']; ?> </p>
       <hr>
       <p class="profile-info"> <? echo $dataUser['user_info']; ?> </p>
+    <? if ($idUser != $profileId) { ?> 
+      <hr>
+      <div class="action-buttons">
+        <button> Написать сообщение </button>
+        <button> Добавить в друзья </button>
+      </div>
+    <? } ?>
     </div>
 
 <? if ($idUser == $profileId)
