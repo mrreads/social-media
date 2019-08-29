@@ -6,7 +6,7 @@ class DB
 
     public static function getDbh()
     {
-        self::$dbh = new PDO('mysql:host=localhost;dbname=social-media', 'root', '');
+        self::$dbh = new PDO('mysql:host=localhost;dbname=social-media', 'root', '2342');
         return self::$dbh;
     }
 

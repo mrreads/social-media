@@ -26,11 +26,14 @@
   <title>Профиль</title>
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/profile.css">
+  <? if ($idUser != $profileId) { ?> <style> .profile-image-form:hover { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24) } </style> <? } ?>
 </head>
 <body>
   <div class="content">
     <div class="nav-menu">
       <? echo '<a href="./profile.php?id='.$idUser.'" id="active">Профиль</a>';?>
+      <hr>
+      <a href="./users.php">Пользователи</a>
       <hr>
       <a href="./audio.php">Аудио</a>
       <hr>

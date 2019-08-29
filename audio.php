@@ -20,14 +20,17 @@
   <link rel="stylesheet" href="./css/audio.css">
   <script src="./js/playAudio.js" defer></script>
   <script src="./js/audioPopup.js" defer></script>
+  <script src="./js/deleteHR.js" defer></script>
 </head>
 
 <body>
   <div class="content">
     <div class="nav-menu">
-      <? echo '<a href="./profile.php?id='.$idUser.'" id="active">Профиль</a>';?>
+      <? echo '<a href="./profile.php?id='.$idUser.'">Профиль</a>';?>
       <hr>
-      <a href="./audio.php">Аудио</a>
+      <a href="./users.php">Пользователи</a>
+      <hr>
+      <a href="./audio.php" id="active">Аудио</a>
       <hr>
       <a href="./logout.php">Выйти</a>
     </div>

@@ -55,7 +55,7 @@ hr
     justify-content: center;
 }
 
-.nav-menu, .profile_info, .profile-setting, .audio-list, .your-list, .popup
+.nav-menu, .profile_info, .profile-setting, .audio-list, .your-list, .popup, .user-list
 {
     display: flex;
 
@@ -71,7 +71,7 @@ hr
     align-items: center;
     flex-flow: column nowrap;
     flex-grow: 1;
-    justify-content: content;
+    justify-content: center;
 }
 
 .nav-menu
