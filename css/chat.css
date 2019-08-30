@@ -1,0 +1,123 @@
+.message-box
+{
+    padding: 15px;
+
+    align-items: flex-start;
+}
+
+.message-box h3
+{
+    font-weight: normal;
+
+    width: 100%;
+
+    text-align: center;
+}
+
+.message
+{
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.message .avatar
+{
+    float: left;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 100%;
+}
+
+.message .name
+{
+    display: flex;
+
+    height: 45px;
+    padding-left: 15px;
+
+    align-items: center;
+}
+
+.message .text
+{
+    height: 45px;
+    padding: 15px 75px;
+}
+
+.message .date
+{
+    font-size: 10px;
+
+    margin-top: 4px;
+    padding-left: 6px;
+
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.message-box form
+{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+}
+
+.message-box form textarea
+{
+    min-height: 75px;
+    max-height: 150px;
+    margin: 0px 5px;
+    padding: 10px 15px;
+
+    resize: vertical;
+    transition: 0.3s all;
+
+    color: rgba(0,0,0,0.7);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 5px;
+
+    flex-grow: 1;
+}
+
+.message-box form textarea:hover, .message-box form textarea:focus
+{
+    color: rgba(0,0,0,1);
+    border: 1px solid rgba(0,0,0,0.7);
+}
+
+.message-box form button
+{
+    font-size: 16px;
+
+    display: flex;
+
+    margin-top: 10px;
+    padding: 15px 25px;
+
+    cursor: pointer;
+    transition: 0.3s all;
+
+    color: white;
+    border: 0;
+    border-radius: 15px;
+    background-color: #012F3F;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.message-box form button:hover, .message-box form button:focus
+{
+    font-size: 18px;
+}
+
+#messages
+{
+    overflow: hidden;
+    overflow-y: scroll;
+
+    width: 100%;
+    max-height: 550px;
+}

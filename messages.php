@@ -17,7 +17,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Пользователи</title>
   <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/users.css">
+  <link rel="stylesheet" href="./css/messages.css">
 </head>
 
 <body>
@@ -32,18 +32,18 @@
       <a href="./logout.php">Выйти</a>
     </div>
 
-    <div class="user-list">
-      <h3>Все пользователи</h3>
+    <div class="dialog-list">
+      <h3>Ваши диалоги</h3>
       <hr>
       <?
-      foreach ($sql = DB::queryAll("SELECT * FROM `users`") as $data)
+      foreach ($sql = DB::queryAll("SELECT DISTINCT message_from, user_firstname, user_profileimage FROM `message`, `users` WHERE `users`.id_user = `message`.message_from AND message_to = $idUser UNION SELECT DISTINCT message_to, user_firstname, user_profileimage FROM `message`, `users` WHERE `users`.id_user = `message`.message_to AND message_from = $idUser") as $data)
       {
       ?>
-      <a class="user" href="./profile.php?id=<? echo $data['id_user'];?>">
-        <? echo '<img src="data:image/jpeg;base64,'.base64_encode( $data['user_profileimage'] ).'">'; ?>
-        <p> <? echo $data['user_firstname']." ".$data['user_lastname'] ?> </p>
-      </a>
-      <hr>
+        <a href="./chat.php?id=<? echo $data['message_from'] ?>">
+            <? echo '<img src="data:image/jpeg;base64,'.base64_encode( $data['user_profileimage'] ).'">'; ?> 
+            <? echo "<p> Диалог с ". $data['user_firstname']."</p>" ?>
+        </a>
+        <hr>
       <?
     }
     ?>
@@ -51,7 +51,7 @@
   </div>
   <script defer>
     let listHR;
-    listHR = document.querySelectorAll(".user-list hr");
+    listHR = document.querySelectorAll(".dialog-list hr");
     listHR[listHR.length-1].remove();
   </script>
 </body>

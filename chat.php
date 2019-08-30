@@ -19,9 +19,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Аудио</title>
+  <title>Чат с <? echo $nameUser; ?></title>
   <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/messages.css">
+  <link rel="stylesheet" href="./css/chat.css">
   <script defer>
     function showMSG()
     {
