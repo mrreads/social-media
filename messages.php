@@ -25,7 +25,9 @@
     <div class="nav-menu">
       <? echo '<a href="./profile.php?id='.$idUser.'">Профиль</a>';?>
       <hr>
-      <a href="./users.php" id="active">Пользователи</a>
+      <a href="./users.php">Пользователи</a>
+      <hr>
+      <a href="./messages.php" id="active">Диалоги</a>
       <hr>
       <a href="./audio.php">Аудио</a>
       <hr>

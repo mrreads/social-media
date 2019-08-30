@@ -27,6 +27,8 @@
       <hr>
       <a href="./users.php" id="active">Пользователи</a>
       <hr>
+      <a href="./messages.php">Диалоги</a>
+      <hr>
       <a href="./audio.php">Аудио</a>
       <hr>
       <a href="./logout.php">Выйти</a>
