@@ -48,7 +48,7 @@
         <? echo '<img src="data:image/jpeg;base64,'.base64_encode( $dataUser['user_profileimage'] ).'" class="profile-image">'; ?>
       </form>
       <p class="profile-name"> <? echo $dataUser['user_firstname']." ".$dataUser['user_lastname']; ?> </p>
-      <p class="profile-birthday"> <? echo $dataUser['user_birthday']. ", ".DB::query("SELECT TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) AS age FROM users WHERE id_user = $idUser")['age']. " лет"; ?> </p>
+      <p class="profile-birthday"> <? echo $dataUser['user_birthday']. ", ".DB::query("SELECT TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) AS age FROM users WHERE id_user = $profileId")['age']. " лет"; ?> </p>
       <p class="profile-location"> <? echo $dataUser['user_country'].", ".$dataUser['user_city']; ?> </p>
       <hr>
       <p class="profile-info"> <? echo $dataUser['user_info']; ?> </p>
