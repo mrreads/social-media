@@ -1,5 +1,5 @@
 <?php
-require_once "DB.php";
+require_once __DIR__ . '/DB.php';
 
 session_start();
 $idUser = (int)$_SESSION['id_user'];
