@@ -56,7 +56,6 @@
       <hr>
       <div class="action-buttons">
         <a href="./chat.php?id=<? echo $profileId ?>"> Написать сообщение </a>
-        <a> Добавить в друзья </a>
       </div>
     <? } ?>
     </div>
