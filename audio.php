@@ -42,8 +42,7 @@
       <hr>
     <?
     foreach ($sql = DB::queryAll("SELECT * FROM `audio`") as $data)
-    {
-      ?>
+    { ?>
       <div class="track">
         <div class="play"></div>
         <p> <? echo $data['audio_author']." - ".$data['audio_name']; ?></p>
@@ -53,9 +52,8 @@
         <form action="./php/add-removeTrack.php" method="GET"> <button class="add" value="<?echo $data['id_audio']?>" name='audioAdd'></button> </form>
       </div>
       <hr>
-      <?
-    }
-    ?>
+      <? } ?>
+      <? $count = DB::queryCount("SELECT * FROM `audio`"); if ($count === 0) { ?> <hr> <p style="width: 100%;text-align: center;"> Тут ничего нет </p> <? } ?>
     </div>
 
     <div class="your-list">
@@ -63,8 +61,7 @@
       <hr>
     <?
     foreach ($sql = DB::queryAll("SELECT `audio`.`audio_author`, `audio`.audio_name, `audio`.`audio_file`, `user-audio`.id_audio FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`") as $data)
-    {
-      ?>
+    { ?>
       <div class="track">
         <div class="play"></div>
         <p> <? echo $data['audio_author']." - ".$data['audio_name']; ?></p>
@@ -74,9 +71,8 @@
         <form action="./php/add-removeTrack.php" method="GET"> <button class="remove" value="<?echo $data['id_audio']?>" name='audioRemove'></button> </form>
       </div>
       <hr>
-      <?
-    }
-    ?>
+      <? } ?>
+      <? $count = DB::queryCount("SELECT * FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`"); if ($count === 0) { ?> <hr> <p style="width: 100%;text-align: center;"> Вы ничего не добавили </p> <? } ?>
     </div>
 
   </div>
