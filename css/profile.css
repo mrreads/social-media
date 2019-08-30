@@ -95,7 +95,7 @@
     border: 1px solid rgba(0,0,0,1);
 }
 
-.profile-setting button, .profile_info button
+.profile-setting button, .action-buttons a
 {
     font-size: 16px;
 
@@ -116,7 +116,7 @@
     justify-content: center;
 }
 
-.profile-setting button:focus, .profile-setting button:hover, .profile_info button:hover, .profile_info button:focus
+.profile-setting button:focus, .profile-setting button:hover, .action-buttons a:hover, .action-buttons a:focus
 {
     font-size: 18px;
 }
@@ -130,9 +130,7 @@
     justify-content: center;
 }
 
-.profile_info button
+.action-buttons a
 {
-    display: inline-block;
-
     margin: 5px;
 }

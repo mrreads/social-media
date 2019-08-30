@@ -53,8 +53,8 @@
     <? if ($idUser != $profileId) { ?> 
       <hr>
       <div class="action-buttons">
-        <button> Написать сообщение </button>
-        <button> Добавить в друзья </button>
+        <a href="./message.php?id=<? echo $profileId ?>"> Написать сообщение </a>
+        <a> Добавить в друзья </a>
       </div>
     <? } ?>
     </div>
