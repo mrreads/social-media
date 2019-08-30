@@ -5,8 +5,8 @@ if (empty($_SESSION['id_user']))
     header('Location: login.php');
 }
 
-require_once __DIR__ . './DB.php';
-$idUser = (int) $_SESSION['id_user'];
+require_once __DIR__ . '/DB.php';
+$idUser = $_SESSION['id_user'];
 
 if (isset($_GET['audioAdd']))
 {

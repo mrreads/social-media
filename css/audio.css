@@ -88,6 +88,7 @@
 .track form, .audio-list h3 .add
 {
     margin-left: auto;
+    display: flex;
 }
 
 .track form .add, .audio-list h3 .add
