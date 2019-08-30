@@ -91,3 +91,8 @@ hr
 {
     color: rgba(0,0,0,1);
 }
+
+img
+{
+    object-fit: cover;
+}
