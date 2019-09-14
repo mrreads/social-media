@@ -2,16 +2,21 @@
 
 class DB
 {
-    public static $dbh = null;
+    public static $dbh;
 
     public static function getDbh()
     {
-        self::$dbh = new PDO('mysql:host=localhost;dbname=social-media', 'root', '2342');
+        $host = 'localhost';
+        $dbname = 'social-media';
+        $user = 'root';
+        $pass = '2342';
+
+        self::$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
         return self::$dbh;
     }
 
-    // DB::query("SELECT * FROM users");
-
+    // Возвращает одномерный массив массив.
+    // $data['название колонки'];
     public static function query($query)
     {
         $sth = self::getDbh()->prepare("$query");
@@ -20,6 +25,8 @@ class DB
         return $data;
     }
 
+    // Возвращает двумерный массив массив.
+    // $data['номер массива']['название колонки'];
     public static function queryAll($query)
     {
         $sth = self::getDbh()->prepare("$query");
@@ -28,8 +35,7 @@ class DB
         return $data;
     }
 
-    // ARRAY['номер массива']['название колонки'];
-
+    // Возвращает количетсво строк.
     public static function queryCount($query)
     {
         $sth = self::getDbh()->prepare("$query");
@@ -38,9 +44,17 @@ class DB
         $data = count($data);
         return $data;
     }
+
+    // Для выполнения запросов по типу UPDATE, INSERT
+    public static function queryExecute($query)
+    {
+        $sth = self::getDbh()->prepare("$query");
+        $sth->execute();
+    }
 }
 
-// foreach ($sql = DB::queryAll("SELECT * FROM users") as $data)
+// Для вывода данных используется такая конструкция:
+// foreach ($sql = DB::query("SELECT * FROM users") as $data)
 // {
 //    echo $data['user_email'];
 // }
