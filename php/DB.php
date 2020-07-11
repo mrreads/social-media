@@ -6,10 +6,10 @@ class DB
 
     public static function getDbh()
     {
-        $host = 'localhost';
+        $host = '127.0.0.1';
         $dbname = 'social-media';
         $user = 'root';
-        $pass = '2342';
+        $pass = '';
 
         self::$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
         return self::$dbh;
