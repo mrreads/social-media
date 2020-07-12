@@ -2,97 +2,107 @@
 
 *, *::before, *::after
 {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body, input, button, textarea, a
 {
-    font-family: "Comfortaa", sans-serif;
-    font-size: 18px;
+	font-family: "Comfortaa", sans-serif;
+	font-size: 18px;
 }
 
 html, body
 {
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
+	width: 100%;
+	min-height: 100vh;
+}
+
+html
+{
+	height: 100%;
 }
 
 body
 {
-    background-image: linear-gradient(-20deg, #E9DEFA 0%, #FBFCDB 100%);
-    background-attachment: fixed;
+	display: flex;
+	flex-flow: column nowrap;
+
+	min-height: 100%;
+
+	background-image: linear-gradient(-20deg, #E9DEFA 0%, #FBFCDB 100%);
+	background-attachment: fixed;
 }
 
 a
 {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 hr
 {
-    width: 100%;
-    margin: 15px -20px;
+	align-self: center;
 
-    border: 0;
-    border-top: 1px solid rgba(0,0,0,0.3);
+	width: 100%;
+	margin: 15px -20px;
 
-    align-self: center;
+	border: 0;
+	border-top: 1px solid rgba(0,0,0,0.3);
 }
 
 .content
 {
-    display: flex;
+	display: flex;
+	align-items: flex-start;
+	flex-flow: row wrap;
+	flex-grow: 1;
+	justify-content: center;
 
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 15px;
-
-    align-items: flex-start;
-    flex-flow: row wrap;
-    justify-content: center;
+	max-width: 1440px;
+	min-height: 100%;
+	margin: 0 auto;
+	padding: 15px;
 }
 
 .nav-menu, .profile_info, .profile-setting, .audio-list, .your-list, .popup, .user-list, .message-box, .dialog-list
 {
-    display: flex;
+	display: flex;
+	align-items: center;
+	flex-flow: column nowrap;
+	flex-grow: 1;
+	justify-content: center;
 
-    width: 450px;
-    min-width: 300px;
-    margin: 50px 25px 25px 25px;
-    padding: 0px 25px 25px 25px;
+	width: 450px;
+	min-width: 300px;
+	margin: 50px 25px 25px 25px;
+	padding: 0px 25px 25px 25px;
 
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-    align-items: center;
-    flex-flow: column nowrap;
-    flex-grow: 1;
-    justify-content: center;
+	border-radius: 15px;
+	background-color: white;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .nav-menu
 {
-    width: 300px;
-    padding: 15px;
+	width: 300px;
+	padding: 15px;
 }
 
 .nav-menu a
 {
-    transition: 0.3s all;
+	transition: 0.3s all;
 
-    color: rgba(0,0,0,0.5);
+	color: rgba(0,0,0,0.5);
 }
 
 .nav-menu a:hover, #active
 {
-    color: rgba(0,0,0,1);
+	color: rgba(0,0,0,1);
 }
 
 img
 {
-    object-fit: cover;
+	object-fit: cover;
 }
+

@@ -2,13 +2,13 @@ let tracks = document.querySelectorAll(".track");
 
 for (let i = 0; i < tracks.length; i++)
 {
-    var isPlayed = 0;
+    var isPlayed = false;
     tracks[i].querySelector(".play").addEventListener("click", function()
     {
-        if (isPlayed == 1)
+        if (isPlayed === true)
         {   
             allAudioStop();
-            isPlayed = 0;
+            isPlayed = false;
             tracks[i].querySelector("audio").pause();
             tracks[i].querySelector(".play").style.backgroundImage = 'url("./img/icons/play.svg")';
             tracks[i].querySelector(".play").style.opacity = "0.7";
@@ -17,7 +17,7 @@ for (let i = 0; i < tracks.length; i++)
         else
         {
             allAudioStop();
-            isPlayed = 1;
+            isPlayed = true;
             tracks[i].querySelector("audio").play();
             tracks[i].querySelector(".play").style.backgroundImage = 'url("./img/icons/pause.svg")';
             tracks[i].querySelector(".play").style.opacity = "1";
