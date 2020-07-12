@@ -1,40 +1,79 @@
-let tracks = document.querySelectorAll(".track");
+let tracks = document.querySelectorAll(".track > .play");
+let isPlayed = false;
+let audioTemp;
 
-for (let i = 0; i < tracks.length; i++)
+let playedAudioId;
+
+let previousAudioElem;
+
+tracks.forEach((track) =>
 {
-    var isPlayed = false;
-    tracks[i].querySelector(".play").addEventListener("click", function()
+    track.addEventListener('click', (e) =>
     {
-        if (isPlayed === true)
-        {   
-            allAudioStop();
-            isPlayed = false;
-            tracks[i].querySelector("audio").pause();
-            tracks[i].querySelector(".play").style.backgroundImage = 'url("./img/icons/play.svg")';
-            tracks[i].querySelector(".play").style.opacity = "0.7";
-            tracks[i].querySelector("p").style.color = "rgba(0, 0, 0, 0.7)";
-        }
-        else
+        // кликнули по треку, который не играет
+        if (track.dataset.active == 'false')
         {
-            allAudioStop();
-            isPlayed = true;
-            tracks[i].querySelector("audio").play();
-            tracks[i].querySelector(".play").style.backgroundImage = 'url("./img/icons/pause.svg")';
-            tracks[i].querySelector(".play").style.opacity = "1";
-            tracks[i].querySelector("p").style.color = "rgba(0, 0, 0, 1)";
-        }
-    });
-}
+            // включи кликнули по треку, который играл ДО этого
+            if (playedAudioId == track.dataset.id)
+            {
+                audioTemp.play();
+                changeTrackStatus(track.dataset.id, '');
+            }
+            else
+            {
+                // останавливаем музыку, если играет
+                if (previousAudioElem)
+                {
+                    console.log('cerf')
+                    audioTemp.pause();
+                }
 
-function allAudioStop()
-{
-    let items = document.querySelectorAll(".track");
-    for (let i = 0; i < items.length; i++)
+                fetch(`./../php/getAudio.php?id=${track.dataset.id}`)
+                .then(response => response.json())
+                .then(data => 
+                {
+                    audioTemp = new Audio("data:audio/wav;base64," + data);
+                    audioTemp.play();
+                });
+
+                changeTrackStatus(track.dataset.id, playedAudioId);
+                playedAudioId = track.dataset.id;
+                previousAudioElem = track;
+            }
+
+            
+        
+        }
+        else 
+        {
+            // кликнули по треку, который играет
+            audioTemp.pause();
+            changeTrackStatus('', track.dataset.id);
+        }
+    })
+});
+
+function changeTrackStatus(id, previous)
+{   
+    if (id)
     {
-        items[i].querySelector("audio").pause();
-        items[i].querySelector(".play").style.backgroundImage = 'url("./img/icons/play.svg")';
-        tracks[i].querySelector(".play").style.opacity = "0.7";
-        tracks[i].querySelector("p").style.color = "rgba(0, 0, 0, 0.7)";
+        newTracks = document.querySelectorAll(`.track > .play[data-id='${id}']`);
+        newTracks.forEach(t => 
+        {
+            t.dataset.active = 'true';
+            t.classList.add('pause');
+        });
+    }
+
+
+    previousTracks = document.querySelectorAll(`.track > .play[data-id='${previous}']`);
+    if (previousTracks)
+    {
+        previousTracks.forEach(t => 
+        {
+            t.dataset.active = 'false';
+            t.classList.remove('pause');
+        });
     }
 }
 

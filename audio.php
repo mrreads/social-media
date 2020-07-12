@@ -20,7 +20,6 @@ $idUser = (int)$_SESSION['id_user'];
     <link rel="stylesheet" href="./css/audio.css">
     <script src="./js/playAudio.js" defer></script>
     <script src="./js/audioPopup.js" defer></script>
-    <script src="./js/deleteHR.js" defer></script>
 </head>
 
 <body>
@@ -45,11 +44,9 @@ $idUser = (int)$_SESSION['id_user'];
             <?
             foreach ($sql = DB::queryAll("SELECT * FROM `audio`") as $data) { ?>
                 <div class="track">
-                    <div class="play"></div>
+                    <div class="play" data-id="<?=$data['id_audio']?>" data-active="false"></div>
                     <p> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
-                    <audio autobuffer="autobuffer">
-                        <? echo '<source src="data:audio/mp3;base64,' . base64_encode($data['audio_file']) . '">'; ?>
-                    </audio>
+
                     <form action="./php/add-removeTrack.php" method="GET">
                         <button class="add" value="<? echo $data['id_audio'] ?>" name='audioAdd'></button>
                     </form>
@@ -69,11 +66,9 @@ $idUser = (int)$_SESSION['id_user'];
             <?
             foreach ($sql = DB::queryAll("SELECT `audio`.`audio_author`, `audio`.audio_name, `audio`.`audio_file`, `user-audio`.id_audio FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`") as $data) { ?>
                 <div class="track">
-                    <div class="play"></div>
+                    <div class="play" data-id="<?=$data['id_audio']?>" data-active="false"></div>
                     <p> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
-                    <audio autobuffer="autobuffer">
-                        <? echo '<source src="data:audio/mp3;base64,' . base64_encode($data['audio_file']) . '">'; ?>
-                    </audio>
+
                     <form action="./php/add-removeTrack.php" method="GET">
                         <button class="remove" value="<? echo $data['id_audio'] ?>" name='audioRemove'></button>
                     </form>

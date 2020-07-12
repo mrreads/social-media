@@ -41,6 +41,11 @@
     background-size: contain;
 }
 
+.track .play.pause
+{
+    background-image: url("./../img/icons/pause.svg");
+}
+
 .track p
 {
     margin-top: 3px;
