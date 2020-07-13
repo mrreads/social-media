@@ -1,4 +1,65 @@
-let tracks = document.querySelectorAll(".track > .play");
+class AudioControlPanel
+{
+    constructor() 
+    {
+        this.audioControlInfo = document.querySelector('.infoTrack');
+        this.audioControlPrevious = document.querySelector('.previousTrack');
+        this.audioControlNext = document.querySelector('.nextTrack');
+        this.audioControlVolume = document.querySelector('.rangeVolume');
+        this.audioControlLenght = document.querySelector('.trackLenght');
+        this.audioCurrentTime = document.querySelector('.trackCurrent');
+
+        this.audioControlVolume.addEventListener('change', () =>
+        {
+            if (audioTemp)
+            {
+                audioTemp.volume = +this.audioControlVolume.value * 0.01;
+                globalVolume = +this.audioControlVolume.value;
+            }
+        });
+
+        this.audioControlLenght.addEventListener('change', () =>
+        {
+            if (audioTemp)
+            {
+                audioTemp.currentTime = +this.audioControlLenght.value;
+            }
+        });
+
+        setInterval(() => {
+            if (audioTemp)
+            {
+                this.minutes = Math.floor(audioTemp.currentTime / 60)
+                this.second = Math.floor(audioTemp.currentTime % 60)
+
+                this.second = (this.second < 10) ? `0${this.second}` : this.second;
+
+                this.audioCurrentTime.textContent = `${this.minutes} : ${this.second}`;
+
+                this.audioControlLenght.value = +audioTemp.currentTime;
+            }
+        }, 1000)
+    }
+
+    changeVolume(val)
+    {
+        this.audioControlVolume.disabled = false;
+        this.audioControlVolume.value = +val;
+        audioTemp.volume = +val * 0.01;
+    }
+
+    updateTrack(elem)
+    {
+        this.audioControlInfo.textContent = elem.querySelector('.track-name').textContent;
+        this.audioControlLenght.max = +audioTemp.duration;
+        this.audioControlLenght.disabled = false;
+    }
+}
+
+let globalVolume = 100;
+let audioControll = new AudioControlPanel();
+
+let tracks = document.querySelectorAll(".track");
 let isPlayed = false;
 let audioTemp;
 
@@ -6,8 +67,9 @@ let playedAudioId;
 
 let previousAudioElem;
 
-tracks.forEach((track) =>
+tracks.forEach((trackElem) =>
 {
+    let track = trackElem.querySelector('.play');
     track.addEventListener('click', (e) =>
     {
         // кликнули по треку, который не играет
@@ -17,6 +79,7 @@ tracks.forEach((track) =>
             if (playedAudioId == track.dataset.id)
             {
                 audioTemp.play();
+                audioControll.changeVolume(+globalVolume);
                 changeTrackStatus(track.dataset.id, '');
             }
             else
@@ -24,7 +87,6 @@ tracks.forEach((track) =>
                 // останавливаем музыку, если играет
                 if (previousAudioElem)
                 {
-                    console.log('cerf')
                     audioTemp.pause();
                 }
 
@@ -32,17 +94,23 @@ tracks.forEach((track) =>
                 .then(response => response.json())
                 .then(data => 
                 {
+                    
                     audioTemp = new Audio("data:audio/wav;base64," + data);
-                    audioTemp.play();
+                    audioTemp.addEventListener('loadeddata', () =>
+                    {
+                        audioTemp.play();
+                
+                        changeTrackStatus(track.dataset.id, playedAudioId);
+    
+                        playedAudioId = track.dataset.id;
+                        previousAudioElem = track;
+                        
+                        audioControll.changeVolume(+globalVolume);
+                        audioControll.updateTrack(trackElem);
+                    })
+  
                 });
-
-                changeTrackStatus(track.dataset.id, playedAudioId);
-                playedAudioId = track.dataset.id;
-                previousAudioElem = track;
             }
-
-            
-        
         }
         else 
         {

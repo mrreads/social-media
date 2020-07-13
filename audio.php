@@ -45,7 +45,7 @@ $idUser = (int)$_SESSION['id_user'];
             foreach ($sql = DB::queryAll("SELECT * FROM `audio`") as $data) { ?>
                 <div class="track">
                     <div class="play" data-id="<?=$data['id_audio']?>" data-active="false"></div>
-                    <p> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
+                    <p class="track-name"> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
 
                     <form action="./php/add-removeTrack.php" method="GET">
                         <button class="add" value="<? echo $data['id_audio'] ?>" name='audioAdd'></button>
@@ -67,7 +67,7 @@ $idUser = (int)$_SESSION['id_user'];
             foreach ($sql = DB::queryAll("SELECT `audio`.`audio_author`, `audio`.audio_name, `audio`.`audio_file`, `user-audio`.id_audio FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`") as $data) { ?>
                 <div class="track">
                     <div class="play" data-id="<?=$data['id_audio']?>" data-active="false"></div>
-                    <p> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
+                    <p class="track-name"> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
 
                     <form action="./php/add-removeTrack.php" method="GET">
                         <button class="remove" value="<? echo $data['id_audio'] ?>" name='audioRemove'></button>
@@ -81,6 +81,17 @@ $idUser = (int)$_SESSION['id_user'];
         </div>
 
     </div>
+
+    <div class="audioControl">
+        <div class="previousTrack"></div>
+        <div class="pauseTrack"></div>
+        <div class="nextTrack"></div>
+        <p class="infoTrack"> Название - Название </p>
+        <input type="range" class="trackLenght" value="0" name="trackLenght" disabled>
+        <p class="trackCurrent">0 : 00</p>
+        <input type="range" min="0" to="100" value="100" class="rangeVolume" name="rangeVolume" disabled>
+    </div>
+                
 </body>
 
 <div class="popup-wrapper">
