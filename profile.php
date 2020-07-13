@@ -113,7 +113,7 @@ $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
         <div class="column-wrapper">
 
             <form class="create-post">
-                <textarea name="post-textarea" id="post-content" cols="30" rows="10"></textarea>
+                <textarea name="post-textarea" id="text-content" cols="30" rows="10"></textarea>
                 
                 <div class="media-controls">
                     <div class="emoji">😀</div>

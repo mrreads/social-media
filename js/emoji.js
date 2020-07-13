@@ -12,7 +12,7 @@ emojiButton.addEventListener('click', e =>
 emojiPicker.addEventListener('emoji-click', event => 
 {   
     console.log(event.detail);
-    textArea.value += event.detail.emoji.unicode;
+    textArea.value += event.detail.unicode;
 });
 
 document.addEventListener('click', e => 
