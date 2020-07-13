@@ -53,7 +53,7 @@ $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
                 <form method="POST" action="php/imageUpload.php" enctype="multipart/form-data" class="profile-image-form">
                     <? if ($idUser == $profileId) { ?> <input type="file" class="profile-image-input" name="image"
                                                             onchange="this.form.submit()"> <? } ?>
-                    <?='<img src="data:image/jpeg;base64,' . base64_encode($dataUser['user_profileimage']) . '" class="profile-image">'; ?>
+                    <?='<img src="/upload/image/'. $dataUser['user_profileimage_path'] . '" class="profile-image">'; ?>
                 </form>
                 <p class="profile-name"> <? echo $dataUser['user_firstname'] . " " . $dataUser['user_lastname']; ?> </p>
                 <p class="profile-birthday"> <? echo $dataUser['user_birthday'] . ", " . DB::query("SELECT TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) AS age FROM users WHERE id_user = $profileId")['age'] . " лет"; ?> </p>
@@ -108,6 +108,17 @@ $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
                     <button>Сохранить информацию</button>
                 </form>
             <? } ?>
+        </div>
+
+        <div class="column-wrapper">
+        <?php
+            foreach ($sql = DB::queryAll("SELECT * FROM post, users WHERE post.id_author = users.id_user AND post.id_user = $profileId;") as $post) { ?>
+                <div class="post">
+                    <?=$post['user_firstname']?>
+                   <hr>
+                   <?=$post['post_text']?>
+                </div>
+        <?php } ?>
         </div>
     </div>
 </body>

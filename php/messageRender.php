@@ -15,7 +15,7 @@ session_start();
   {
     ?>
       <div class="message">
-        <? echo '<img src="data:image/jpeg;base64,'.base64_encode( $data['user_profileimage'] ).'" class="avatar">'; ?>
+        <? echo '<img src="/upload/image/'. $data['user_profileimage_path'] . '" class="avatar">'; ?>
         <p class="name"> <? echo $data['user_firstname']; ?> <span class="date"> <? echo $data['message_date']; ?> </span></p>
         <p class="text"> <? echo $data['message_text']; ?></p>
       </div>

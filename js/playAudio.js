@@ -138,29 +138,19 @@ function audioPlay(track, trackElem)
             {
                 audioTemp.pause();
             }
-
-            fetch(`./../php/getAudio.php?id=${track.dataset.id}`)
-            .then(response => response.json())
-            .then(data => 
+            audioTemp = new Audio(`./../upload/audio/${track.dataset.file}`);
+            audioTemp.addEventListener('loadeddata', () =>
             {
-                
-                audioTemp = new Audio("data:audio/wav;base64," + data);
-                audioTemp.addEventListener('loadeddata', () =>
-                {
-                    audioTemp.play();
-            
-                    changeTrackStatus(track.dataset.id, playedAudioId);
+                audioTemp.play();
+        
+                changeTrackStatus(track.dataset.id, playedAudioId);
 
-                    playedAudioId = track.dataset.id;
-                    previousAudioElem = track;
-                    currentAudioElem = trackElem;
-                    audioControll.changeVolume(+globalVolume);
-                    audioControll.updateTrack(trackElem);
-
-                    
-                })
-
-            });
+                playedAudioId = track.dataset.id;
+                previousAudioElem = track;
+                currentAudioElem = trackElem;
+                audioControll.changeVolume(+globalVolume);
+                audioControll.updateTrack(trackElem);
+            })
         }
     }
     else 

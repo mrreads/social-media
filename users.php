@@ -41,7 +41,7 @@ $idUser = (int)$_SESSION['id_user'];
             foreach ($sql = DB::queryAll("SELECT * FROM `users`") as $data) {
                 ?>
                 <a class="user" href="./profile.php?id=<? echo $data['id_user']; ?>">
-                    <?='<img src="data:image/jpeg;base64,' . base64_encode($data['user_profileimage']) . '">'; ?>
+                    <?='<img src="/upload/image/'. $data['user_profileimage_path'] . '">'; ?>
                     <p> <?=$data['user_firstname'] . " " . $data['user_lastname'] ?> </p>
                 </a>
                 <hr>
