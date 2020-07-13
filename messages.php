@@ -49,7 +49,7 @@ $idUser = (int)$_SESSION['id_user'];
             if ($count === 0)
             { ?>
                 <hr> <p style="width: 100%;text-align: center;"> У вас нет диалогов </p>
-            <? } ?>
+            <?php } ?>
         </div>
     </div>
     <script defer>
@@ -58,5 +58,4 @@ $idUser = (int)$_SESSION['id_user'];
         listHR[listHR.length - 1].remove();
     </script>
 </body>
-
 </html>

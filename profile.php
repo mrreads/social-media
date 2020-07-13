@@ -107,7 +107,7 @@ $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
 
                     <button>Сохранить информацию</button>
                 </form>
-            <? } ?>
+            <?php } ?>
         </div>
 
         <div class="column-wrapper">
