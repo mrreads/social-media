@@ -232,6 +232,25 @@ img
 	justify-content: center;
 }
 
+.create-post
+{
+	position: relative;
+}
+
+emoji-picker
+{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	transform: translateY(100%);
+}
+
+emoji-picker.hide
+{
+	display: none;
+}
+
+
 @media screen and (max-width: 1200px)
 {
 	.content

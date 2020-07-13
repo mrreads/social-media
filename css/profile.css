@@ -70,6 +70,18 @@
 	margin-bottom: 15px;
 }
 
+.media-controls
+{
+	padding: 0 15px;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+
+	width: 100%;
+	margin-bottom: 15px;
+}
+
 .profile-setting textarea, .create-post textarea
 {
 	min-height: 110px;
@@ -87,6 +99,7 @@
 {
 	width: 100%;
 	margin: 25px 0;
+	margin-bottom: 15px;
 }
 
 .profile-setting label
@@ -107,7 +120,7 @@
 	border: 1px solid rgba(0,0,0,1);
 }
 
-.profile-setting button, .action-buttons a, .create-post button, .create-post .emoji
+.profile-setting button, .action-buttons a, .create-post button
 {
 	font-size: 16px;
 
@@ -131,9 +144,11 @@
 {
 	font-size: 16px;
 
-	max-width: 10px;
+	width: 25px;
+	height: 25px;
 	margin: 0;
-	margin-left: 15px;
+
+	cursor: pointer;
 }
 
 .create-post-controls
@@ -152,7 +167,7 @@
 	margin: 0;
 }
 
-.profile-setting button:focus, .profile-setting button:hover, .action-buttons a:hover, .action-buttons a:focus, .create-post button:hover, .create-post button:focus, .emoji:focus, .emoji:hover
+.profile-setting button:focus, .profile-setting button:hover, .action-buttons a:hover, .action-buttons a:focus, .create-post button:hover, .create-post button:focus
 {
 	font-size: 18px;
 }
