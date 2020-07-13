@@ -92,9 +92,12 @@ $idUser = (int)$_SESSION['id_user'];
     </div>
 
     <div class="audioControl">
-        <div class="previousTrack"></div>
-        <div class="pauseTrack"></div>
-        <div class="nextTrack"></div>
+        <div class="audioPlayControl">
+            <div class="previousTrack disable"></div>
+            <div class="pauseTrack disable"></div>
+            <div class="nextTrack disable"></div>
+        </div>
+
         <p class="infoTrack"> Название - Название </p>
         <input type="range" class="trackLenght" value="0" name="trackLenght" disabled>
         <p class="trackCurrent">0 : 00</p>

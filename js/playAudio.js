@@ -4,6 +4,7 @@ class AudioControlPanel
     {
         this.audioControlInfo = document.querySelector('.infoTrack');
         this.audioControlPrevious = document.querySelector('.previousTrack');
+        this.audioControlPause = document.querySelector('.pauseTrack');
         this.audioControlNext = document.querySelector('.nextTrack');
         this.audioControlVolume = document.querySelector('.rangeVolume');
         this.audioControlLenght = document.querySelector('.trackLenght');
@@ -35,6 +36,21 @@ class AudioControlPanel
             
         });
 
+        this.audioControlPause.addEventListener('click', () => 
+        {
+            if (audioTemp.paused)
+            {
+                changeTrackStatus(playedAudioId);
+                audioTemp.play();
+            }
+            else
+            {
+                changeTrackStatus('', playedAudioId)
+                audioTemp.pause();
+            }
+            this.pauseUnpause();
+        });
+
         this.audioControlNext.addEventListener('click', () => 
         {
             if (currentAudioElem.nextElementSibling)
@@ -44,6 +60,7 @@ class AudioControlPanel
             
         });
 
+
         setInterval(() => {
             if (audioTemp)
             {
@@ -51,12 +68,24 @@ class AudioControlPanel
                 this.second = Math.floor(audioTemp.currentTime % 60)
 
                 this.second = (this.second < 10) ? `0${this.second}` : this.second;
-
+        
                 this.audioCurrentTime.textContent = `${this.minutes} : ${this.second}`;
 
                 this.audioControlLenght.value = +audioTemp.currentTime;
             }
         }, 1000)
+    }
+
+    pauseUnpause()
+    {
+        if (audioTemp.paused)
+        {
+            this.audioControlPause.classList.remove('pause');
+        }
+        else
+        {
+            this.audioControlPause.classList.add('pause');
+        }
     }
 
     changeVolume(val)
@@ -68,6 +97,9 @@ class AudioControlPanel
 
     updateTrack(elem)
     {    
+        this.audioControlPause.classList.remove('disable');
+        
+        this.audioControlInfo.title = elem.querySelector('.track-name').textContent;
         this.audioControlInfo.textContent = elem.querySelector('.track-name').textContent;
         this.audioControlLenght.max = +audioTemp.duration;
         this.audioControlLenght.disabled = false;
@@ -103,6 +135,15 @@ class AudioControlPanel
             {
                 this.audioControlNext.classList.add('disable')
             }
+        }
+
+        if (this.audioControlInfo.textContent.length > 40 || this.audioControlInfo.scrollWidth > this.audioControlInfo.offsetWidth)
+        {
+            this.audioControlInfo.classList.add('more');
+        }
+        else
+        {
+            this.audioControlInfo.classList.remove('more');
         }
     }
 }
@@ -183,7 +224,6 @@ function changeTrackStatus(id, previous)
         });
     }
 
-
     previousTracks = document.querySelectorAll(`.track > .play[data-id='${previous}']`);
     if (previousTracks)
     {
@@ -193,4 +233,6 @@ function changeTrackStatus(id, previous)
             t.classList.remove('pause');
         });
     }
+
+    audioControll.pauseUnpause();
 }
