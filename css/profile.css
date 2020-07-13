@@ -69,7 +69,7 @@
 {
     min-height: 110px;
     padding: 10px;
-
+    max-height: 250px;
     resize: vertical;
     text-align: center;
 
