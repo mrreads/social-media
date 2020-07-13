@@ -34,21 +34,25 @@ $idUser = (int)$_SESSION['id_user'];
             <a href="./logout.php">Выйти</a>
         </div>
 
-        <div class="user-list">
-            <h3>Все пользователи</h3>
-            <hr>
-            <?php
-            foreach ($sql = DB::queryAll("SELECT * FROM `users`") as $data) {
-                ?>
-                <a class="user" href="./profile.php?id=<? echo $data['id_user']; ?>">
-                    <?='<img src="/upload/image/'. $data['user_profileimage_path'] . '">'; ?>
-                    <p> <?=$data['user_firstname'] . " " . $data['user_lastname'] ?> </p>
-                </a>
+        <div class="column-wrapper">
+            <div class="user-list">
+                <h3>Все пользователи</h3>
                 <hr>
                 <?php
-            } ?>
+                foreach ($sql = DB::queryAll("SELECT * FROM `users`") as $data) {
+                    ?>
+                    <a class="user" href="./profile.php?id=<? echo $data['id_user']; ?>">
+                        <?='<img src="/upload/image/'. $data['user_profileimage_path'] . '">'; ?>
+                        <p> <?=$data['user_firstname'] . " " . $data['user_lastname'] ?> </p>
+                    </a>
+                    <hr>
+                    <?php
+                } ?>
+            </div>
         </div>
+
     </div>
+    
     <script defer>
         let listHR;
         listHR = document.querySelectorAll('.user-list hr');

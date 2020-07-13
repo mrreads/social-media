@@ -36,59 +36,62 @@ $idUser = (int)$_SESSION['id_user'];
             <a href="./logout.php">Выйти</a>
         </div>
 
-        <div class="audio-list">
-            <h3><span>Все Аудио</span>
-                <button class="add"></button>
-            </h3>
-            <hr>
-            <?
-            $audios = DB::queryAll("SELECT * FROM `audio`");
-            if ($audios)
-            {
-                foreach ($audios as $data)
+        <div class="column-wrapper">
+            <div class="audio-list">
+                <h3><span>Все Аудио</span>
+                    <button class="add"></button>
+                </h3>
+                <hr>
+                <?
+                $audios = DB::queryAll("SELECT * FROM `audio`");
+                if ($audios)
+                {
+                    foreach ($audios as $data)
+                    { ?>
+                        <div class="track">
+                            <div class="play" data-id="<?=$data['id_audio']?>" data-file="<?=$data['audio_path']?>" data-active="false"></div>
+                            <p class="track-name"> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
+        
+                            <form action="./php/add-removeTrack.php" method="GET">
+                                <button class="add" value="<? echo $data['id_audio'] ?>" name='audioAdd'></button>
+                            </form>
+                        </div>
+                    <? }
+                }
+                else
                 { ?>
-                    <div class="track">
-                        <div class="play" data-id="<?=$data['id_audio']?>" data-file="<?=$data['audio_path']?>" data-active="false"></div>
-                        <p class="track-name"> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
-    
-                        <form action="./php/add-removeTrack.php" method="GET">
-                            <button class="add" value="<? echo $data['id_audio'] ?>" name='audioAdd'></button>
-                        </form>
-                    </div>
-                <? }
-            }
-            else
-            { ?>
-                <p style="width: 100%;text-align: center; margin-top: 15px;"> Аудиозаписи отсуствуют </p>
-            <? } ?>
+                    <p style="width: 100%;text-align: center; margin-top: 15px;"> Аудиозаписи отсуствуют </p>
+                <? } ?>
+            </div>
         </div>
 
-        <div class="your-list">
-            <h3> Ваши аудио</h3>
-            <hr>
-            <?
-            $audios = DB::queryAll("SELECT `audio`.`audio_author`, `audio`.audio_name, `audio`.`audio_path`, `user-audio`.id_audio FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`");
-            if ($audios)
-            {
-                foreach ($audios as $data)
+        <div class="column-wrapper">
+            <div class="your-list">
+                <h3> Ваши аудио</h3>
+                <hr>
+                <?
+                $audios = DB::queryAll("SELECT `audio`.`audio_author`, `audio`.audio_name, `audio`.`audio_path`, `user-audio`.id_audio FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`");
+                if ($audios)
+                {
+                    foreach ($audios as $data)
+                    { ?>
+                        <div class="track">
+                            <div class="play" data-id="<?=$data['id_audio']?>" data-file="<?=$data['audio_path']?>" data-active="false"></div>
+                            <p class="track-name"> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
+        
+                            <form action="./php/add-removeTrack.php" method="GET">
+                                <button class="remove" value="<? echo $data['id_audio'] ?>" name='audioRemove'></button>
+                            </form>
+                        </div>
+                        <!-- <hr>  -->
+                    <? }
+                }
+                else
                 { ?>
-                    <div class="track">
-                        <div class="play" data-id="<?=$data['id_audio']?>" data-file="<?=$data['audio_path']?>" data-active="false"></div>
-                        <p class="track-name"> <? echo $data['audio_author'] . " - " . $data['audio_name']; ?></p>
-    
-                        <form action="./php/add-removeTrack.php" method="GET">
-                            <button class="remove" value="<? echo $data['id_audio'] ?>" name='audioRemove'></button>
-                        </form>
-                    </div>
-                    <!-- <hr>  -->
-                <? }
-            }
-            else
-            { ?>
-                <p style="width: 100%;text-align: center; "> Аудиозаписи отсуствуют </p>
-            <? } ?>
+                    <p style="width: 100%;text-align: center; "> Аудиозаписи отсуствуют </p>
+                <? } ?>
+            </div>
         </div>
-
     </div>
 
     <div class="audioControl">

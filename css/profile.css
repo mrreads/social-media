@@ -1,170 +1,205 @@
 .profile-image-form, .profile-image, .profile-image-input
 {
-    width: 150px;
-    height: 150px;
+	width: 150px;
+	height: 150px;
 
-    border-radius: 100%;
+	border-radius: 100%;
 }
 
 .profile-image-form
 {
-    margin-top: -25px;
+	margin-top: -25px;
 
-    transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
+	transition: all 0.3s cubic-bezier(0.25,0.8,0.25,1);
 
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
 .profile-image-form:hover
 {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .profile-image
 {
-    object-fit: cover;
+	object-fit: cover;
 }
 
 .profile-image-input
 {
-    position: absolute;
+	position: absolute;
 
-    cursor: pointer;
+	cursor: pointer;
 
-    opacity: 0;
+	opacity: 0;
 }
 
 .profile_info p
 {
-    margin: 2px;
+	margin: 2px;
 
-    text-align: center;
+	text-align: center;
 }
 
 .profile-name
 {
-    font-size: 26px;
-    font-weight: bold;
+	font-size: 26px;
+	font-weight: bold;
 
-    padding: 10px 0px;
+	padding: 10px 0px;
 }
 
 .profile-birthday
 {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .profile-setting input
 {
-    min-height: 35px;
-    padding: 10px 15px;
+	min-height: 35px;
+	padding: 10px 15px;
 
-    text-align: center;
+	text-align: center;
 
-    border: 1px solid rgba(0,0,0,0.3);
-    border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
 }
 
-.profile-setting textarea
+.create-post
 {
-    min-height: 110px;
-    padding: 10px;
-    max-height: 250px;
-    resize: vertical;
-    text-align: center;
+	margin-bottom: 15px;
+}
 
-    border: 1px solid rgba(0,0,0,0.3);
-    border-radius: 5px;
+.profile-setting textarea, .create-post textarea
+{
+	min-height: 110px;
+	max-height: 250px;
+	padding: 10px;
+
+	resize: vertical;
+	text-align: center;
+
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 5px;
+}
+
+.create-post textarea
+{
+	width: 100%;
+	margin: 25px 0;
 }
 
 .profile-setting label
 {
-    margin-top: 25px;
-    margin-bottom: 5px;
+	margin-top: 25px;
+	margin-bottom: 5px;
 }
 
 .profile-setting input, .profile-setting textarea
 {
-    width: 100%;
+	width: 100%;
 
-    transition: 0.3s all;
+	transition: 0.3s all;
 }
 
-.profile-setting input:hover, .profile-setting textarea:hover, .profile-setting input:focus, .profile-setting textarea:focus
+.profile-setting input:hover, .profile-setting textarea:hover, .profile-setting input:focus, .profile-setting textarea:focus, .create-post textarea:hover, .create-post textarea:focus
 {
-    border: 1px solid rgba(0,0,0,1);
+	border: 1px solid rgba(0,0,0,1);
 }
 
-.profile-setting button, .action-buttons a
+.profile-setting button, .action-buttons a, .create-post button, .create-post .emoji
 {
-    font-size: 16px;
+	font-size: 16px;
 
-    display: flex;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    margin-top: 30px;
-    padding: 15px 25px;
+	margin-top: 30px;
+	padding: 15px 25px;
 
-    cursor: pointer;
-    transition: 0.3s all;
+	cursor: pointer;
+	transition: 0.3s all;
 
-    color: white;
-    border: 0;
-    border-radius: 15px;
-    background-color: #012F3F;
-
-    align-items: center;
-    justify-content: center;
+	color: white;
+	border: 0;
+	border-radius: 15px;
+	background-color: #012F3F;
 }
 
-.profile-setting button:focus, .profile-setting button:hover, .action-buttons a:hover, .action-buttons a:focus
+.create-post .emoji
 {
-    font-size: 18px;
+	font-size: 16px;
+
+	max-width: 10px;
+	margin: 0;
+	margin-left: 15px;
+}
+
+.create-post-controls
+{
+	display: flex;
+	flex-flow: row nowrap;
+
+	width: 100%;
+	max-height: 45px;
+}
+
+.create-post button
+{
+	flex-grow: 1;
+
+	margin: 0;
+}
+
+.profile-setting button:focus, .profile-setting button:hover, .action-buttons a:hover, .action-buttons a:focus, .create-post button:hover, .create-post button:focus, .emoji:focus, .emoji:hover
+{
+	font-size: 18px;
 }
 
 .profile_info .action-buttons
 {
-    display: flex;
-
-    align-items: center;
-    flex-flow: row wrap;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	flex-flow: row wrap;
+	justify-content: center;
 }
 
 .action-buttons a
 {
-    margin: 5px;
+	margin: 5px;
 }
 
-.post
-{
-    
-}
+
 
 .post-image
 {
-    height: 65px;
-    width: 65px;
-    border-radius: 100%;
+	width: 65px;
+	height: 65px;
+
+	border-radius: 100%;
 }
 
 .post-author
 {
-    margin-top: -10px;
-    width: 100%;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+
+	width: 100%;
+	margin-top: -10px;
 }
 
 .post a
 {
-    color: #000000;
-    margin-left: 15px;
-    margin-top: 30px;
+	margin-top: 30px;
+	margin-left: 15px;
+
+	color: #000000;
 }
 
 .post-content
 {
-    width: 100%;
+	width: 100%;
 }

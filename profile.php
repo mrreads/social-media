@@ -111,6 +111,16 @@ $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
         </div>
 
         <div class="column-wrapper">
+
+            <form class="create-post">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                
+                <div class="create-post-controls">
+                    <button> Создать пост </button>
+                    <div class="emoji">😀</div>
+                </div>
+            </form>
+
         <?php
             $posts = DB::queryAll("SELECT * FROM post, users WHERE post.id_author = users.id_user AND post.id_user = $profileId;");
             if ($posts)
