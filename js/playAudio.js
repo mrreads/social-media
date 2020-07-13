@@ -26,6 +26,24 @@ class AudioControlPanel
             }
         });
 
+        this.audioControlPrevious.addEventListener('click', () => 
+        {
+            if (currentAudioElem.previousElementSibling)
+            {
+                audioPlay(currentAudioElem.previousElementSibling.querySelector('.play'), currentAudioElem.previousElementSibling);
+            }
+            
+        });
+
+        this.audioControlNext.addEventListener('click', () => 
+        {
+            if (currentAudioElem.nextElementSibling)
+            {
+                audioPlay(currentAudioElem.nextElementSibling.querySelector('.play'), currentAudioElem.nextElementSibling);
+            }
+            
+        });
+
         setInterval(() => {
             if (audioTemp)
             {
@@ -49,10 +67,43 @@ class AudioControlPanel
     }
 
     updateTrack(elem)
-    {
+    {    
         this.audioControlInfo.textContent = elem.querySelector('.track-name').textContent;
         this.audioControlLenght.max = +audioTemp.duration;
         this.audioControlLenght.disabled = false;
+
+        if (currentAudioElem.previousElementSibling && !currentAudioElem.previousElementSibling.classList.contains('track'))
+        {   
+            this.audioControlPrevious.classList.add('disable')
+        }
+        else
+        {
+            if (currentAudioElem.previousElementSibling)
+            {
+                this.audioControlPrevious.classList.remove('disable');
+            }
+            else
+            {
+                this.audioControlPrevious.classList.add('disable')
+            }
+            
+        }
+
+        if (currentAudioElem.nextElementSibling && !currentAudioElem.nextElementSibling.classList.contains('track'))
+        {
+            this.audioControlNext.classList.add('disable')
+        }
+        else
+        {
+            if (currentAudioElem.nextElementSibling)
+            {
+                this.audioControlNext.classList.remove('disable');
+            }
+            else
+            {
+                this.audioControlNext.classList.add('disable')
+            }
+        }
     }
 }
 
@@ -65,59 +116,68 @@ let audioTemp;
 
 let playedAudioId;
 
+let currentAudioElem;
 let previousAudioElem;
+
+function audioPlay(track, trackElem)
+{
+    // кликнули по треку, который не играет
+    if (track.dataset.active == 'false')
+    {
+        // включи кликнули по треку, который играл ДО этого
+        if (playedAudioId == track.dataset.id)
+        {
+            audioTemp.play();
+            audioControll.changeVolume(+globalVolume);
+            changeTrackStatus(track.dataset.id, '');
+        }
+        else
+        {
+            // останавливаем музыку, если играет
+            if (previousAudioElem)
+            {
+                audioTemp.pause();
+            }
+
+            fetch(`./../php/getAudio.php?id=${track.dataset.id}`)
+            .then(response => response.json())
+            .then(data => 
+            {
+                
+                audioTemp = new Audio("data:audio/wav;base64," + data);
+                audioTemp.addEventListener('loadeddata', () =>
+                {
+                    audioTemp.play();
+            
+                    changeTrackStatus(track.dataset.id, playedAudioId);
+
+                    playedAudioId = track.dataset.id;
+                    previousAudioElem = track;
+                    currentAudioElem = trackElem;
+                    audioControll.changeVolume(+globalVolume);
+                    audioControll.updateTrack(trackElem);
+
+                    
+                })
+
+            });
+        }
+    }
+    else 
+    {
+        // кликнули по треку, который играет
+        audioTemp.pause();
+        changeTrackStatus('', track.dataset.id);
+    }
+}
+
 
 tracks.forEach((trackElem) =>
 {
     let track = trackElem.querySelector('.play');
     track.addEventListener('click', (e) =>
     {
-        // кликнули по треку, который не играет
-        if (track.dataset.active == 'false')
-        {
-            // включи кликнули по треку, который играл ДО этого
-            if (playedAudioId == track.dataset.id)
-            {
-                audioTemp.play();
-                audioControll.changeVolume(+globalVolume);
-                changeTrackStatus(track.dataset.id, '');
-            }
-            else
-            {
-                // останавливаем музыку, если играет
-                if (previousAudioElem)
-                {
-                    audioTemp.pause();
-                }
-
-                fetch(`./../php/getAudio.php?id=${track.dataset.id}`)
-                .then(response => response.json())
-                .then(data => 
-                {
-                    
-                    audioTemp = new Audio("data:audio/wav;base64," + data);
-                    audioTemp.addEventListener('loadeddata', () =>
-                    {
-                        audioTemp.play();
-                
-                        changeTrackStatus(track.dataset.id, playedAudioId);
-    
-                        playedAudioId = track.dataset.id;
-                        previousAudioElem = track;
-                        
-                        audioControll.changeVolume(+globalVolume);
-                        audioControll.updateTrack(trackElem);
-                    })
-  
-                });
-            }
-        }
-        else 
-        {
-            // кликнули по треку, который играет
-            audioTemp.pause();
-            changeTrackStatus('', track.dataset.id);
-        }
+        audioPlay(track, trackElem)
     })
 });
 
@@ -144,9 +204,3 @@ function changeTrackStatus(id, previous)
         });
     }
 }
-
-let listHR;
-listHR = document.querySelectorAll(".audio-list hr");
-listHR[listHR.length-1].remove();
-listHR = document.querySelectorAll(".your-list hr");
-listHR[listHR.length-1].remove();

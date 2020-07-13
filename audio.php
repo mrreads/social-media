@@ -51,7 +51,7 @@ $idUser = (int)$_SESSION['id_user'];
                         <button class="add" value="<? echo $data['id_audio'] ?>" name='audioAdd'></button>
                     </form>
                 </div>
-                <hr>
+                <!-- <hr>  -->
             <? } ?>
             <? $count = DB::queryCount("SELECT * FROM `audio`");
             if ($count === 0)
@@ -73,11 +73,12 @@ $idUser = (int)$_SESSION['id_user'];
                         <button class="remove" value="<? echo $data['id_audio'] ?>" name='audioRemove'></button>
                     </form>
                 </div>
-                <hr>
+                <!-- <hr>  -->
             <? } ?>
             <? $count = DB::queryCount("SELECT * FROM `user-audio`, `audio` WHERE `user-audio`.id_user = $idUser AND `user-audio`.`id_audio` = `audio`.`id_audio`");
             if ($count === 0) { ?>
-                <hr> <p style="width: 100%;text-align: center;"> Вы ничего не добавили </p> <? } ?>
+                <hr>
+                <p style="width: 100%;text-align: center;"> Вы ничего не добавили </p> <? } ?>
         </div>
 
     </div>

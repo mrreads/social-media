@@ -130,11 +130,12 @@ img
 
 .previousTrack, .pauseTrack, .nextTrack
 {
-    cursor: pointer;
-    opacity: 0.4;
 	width: 25px;
 	height: 25px;
 
+	cursor: pointer;
+
+	opacity: 0.8;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
@@ -142,33 +143,40 @@ img
 
 .previousTrack
 {
-    transform: rotate(180deg);
-    background-image: url('./../img/icons/trackSwipe.png');
+	transform: rotate(180deg);
+
+	background-image: url("./../img/icons/trackSwipe.png");
 }
 
 .pauseTrack
 {
-    margin: 0 6px;
-    height: 20px;
-    background-image: url('./../img/icons/play.svg');
+	height: 20px;
+	margin: 0 6px;
+
+	background-image: url("./../img/icons/play.svg");
 }
 
 .nextTrack
 {
-    background-image: url('./../img/icons/trackSwipe.png');
+	background-image: url("./../img/icons/trackSwipe.png");
 }
 
 .infoTrack
 {
-    margin-left: 15px;;
+	margin-left: 15px;;
 }
 
 .trackLenght
 {
-    margin: 0 15px;
+	margin: 0 15px;
 }
 
 .rangeVolume
 {
 	margin-left: 15px;
+}
+
+.previousTrack.disable, .pauseTrack.disable, .nextTrack.disable
+{
+	opacity: 0.3;
 }
