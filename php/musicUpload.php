@@ -16,8 +16,6 @@ if (count($_FILES) == 1 AND $_FILES['audio']['type'] == 'audio/mpeg')
     
     move_uploaded_file($_FILES["audio"]["tmp_name"], $pathToWrite. $fileName);
 
-    $query = DB::query("UPDATE users SET user_profileimage_path = '$fileName' WHERE id_user = $idUser");
-
     $query = DB::query("INSERT INTO `audio` (`id_audio`, `audio_author`, `audio_name`, `audio_path`) VALUES (NULL, '$audioAuthor', '$audioName', '$fileName')");
 }
 header('Location: ./../audio.php');
