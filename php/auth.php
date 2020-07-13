@@ -8,12 +8,21 @@ $loginPassword = htmlspecialchars($_POST['loginPassword']);
 
 if (isset($_POST['loginButton']))
 {
-    $userCheck = DB::queryCount("SELECT * FROM users WHERE user_email = '$loginEmail' AND user_password = '$loginPassword'");
-    if ($userCheck == 1)
+    $userCheck = DB::query("SELECT user_password FROM users WHERE user_email = '$loginEmail';");
+    if ($userCheck)
     {
-        $dataUser = DB::query("SELECT id_user FROM users WHERE user_email = '$loginEmail' AND user_password = '$loginPassword'");
-        $_SESSION['id_user'] = $dataUser['id_user'];
-        header('Location: ./../profile.php');
+        $passwordHash = $userCheck['user_password'];
+        if (password_verify($loginPassword, $passwordHash)) 
+        {
+            $dataUser = DB::query("SELECT * FROM users WHERE user_email = '$loginEmail';");
+            $_SESSION['id_user'] = $dataUser['id_user'];
+            header('Location: ./../profile.php');
+        }
+        else 
+        {
+            setcookie("message", "Пароль неверный.", time() + 2, '/');
+            header('Location: ./../login.php');
+        }
     }
     else
     {
@@ -53,7 +62,34 @@ $regusterInfo = htmlspecialchars($_POST['registerInfo']);
 
 if (isset($_POST['registerButton']))
 {
-    $addAccount = DB::query("INSERT INTO `users` (`id_user`, `user_nickname`, `user_email`, `user_birthday`, `user_password`, `user_firstname`, `user_lastname`, `user_country`, `user_city`, `user_info`, `user_profileimage_path`) 
-    VALUES (NULL, '$registerNickName', '$registerEmail', '$registerDate', '$registerPassword', '$registerFirstName', '$registerLastName', '$registerCountry', '$registerCity', '$regusterInfo', 'defaultUser.jpg';");
-header('Location: ./../index.php');
+    $registerPassword = password_hash($registerPassword, PASSWORD_DEFAULT);
+
+    $addAccount = DB::query("INSERT INTO `users`(
+                                    `id_user`,
+                                    `user_nickname`,
+                                    `user_email`,
+                                    `user_birthday`,
+                                    `user_password`,
+                                    `user_firstname`,
+                                    `user_lastname`,
+                                    `user_country`,
+                                    `user_city`,
+                                    `user_info`,
+                                    `user_profileimage_path`
+                                )
+                                VALUES(
+                                    NULL,
+                                    '$registerNickName',
+                                    '$registerEmail',
+                                    '$registerDate',
+                                    '$registerPassword',
+                                    '$registerFirstName',
+                                    '$registerLastName',
+                                    '$registerCountry',
+                                    '$registerCity',
+                                    '$regusterInfo',
+                                    'defaultUser.jpg'
+                                );");
+    
+    header('Location: ./../index.php');
 }
