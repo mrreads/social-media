@@ -134,3 +134,37 @@
 {
     margin: 5px;
 }
+
+.post
+{
+    
+}
+
+.post-image
+{
+    height: 65px;
+    width: 65px;
+    border-radius: 100%;
+}
+
+.post-author
+{
+    margin-top: -10px;
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post a
+{
+    color: #000000;
+    margin-left: 15px;
+    margin-top: 30px;
+}
+
+.post-content
+{
+    width: 100%;
+}

@@ -16,7 +16,7 @@
 	text-align: center;
 }
 
-.audio-list hr
+.audio-list hr, .your-list hr
 {
 	margin-bottom: 0px;
 }

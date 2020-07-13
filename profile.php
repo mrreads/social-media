@@ -112,13 +112,31 @@ $dataUser = DB::query("SELECT * FROM users WHERE id_user = $profileId");
 
         <div class="column-wrapper">
         <?php
-            foreach ($sql = DB::queryAll("SELECT * FROM post, users WHERE post.id_author = users.id_user AND post.id_user = $profileId;") as $post) { ?>
+            $posts = DB::queryAll("SELECT * FROM post, users WHERE post.id_author = users.id_user AND post.id_user = $profileId;");
+            if ($posts)
+            {
+                foreach ($posts as $post) { ?>
+                    <div class="post">
+                        <div class="post-author">
+                            <?='<img src="/upload/image/'. $post['user_profileimage_path'] . '" class="post-image">'; ?>
+                            <a href="#"> <?=$post['user_firstname'].' '.$post['user_lastname']?> </a>
+                        </div> 
+    
+                        <hr>
+    
+                        <p class="post-content">
+                            <?=$post['post_text']?>
+                        </p>
+                        
+                    </div>
+                <?php }
+            }
+            else
+            { ?>
                 <div class="post">
-                    <?=$post['user_firstname']?>
-                   <hr>
-                   <?=$post['post_text']?>
+                    <p style="width: 100%; text-align: center; margin-top: 25px;"> На стене нет записей </p>
                 </div>
-        <?php } ?>
+            <?php } ?>
         </div>
     </div>
 </body>

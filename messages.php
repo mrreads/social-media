@@ -38,15 +38,19 @@ $idUser = (int)$_SESSION['id_user'];
             <h3>Ваши диалоги</h3>
             <hr>
             <?php
-            foreach ($sql = DB::queryAll("SELECT DISTINCT message_from, user_firstname, user_profileimage FROM `message`, `users` WHERE `users`.id_user = `message`.message_from AND message_to = $idUser UNION SELECT DISTINCT message_to, user_firstname, user_profileimage FROM `message`, `users` WHERE `users`.id_user = `message`.message_to AND message_from = $idUser") as $data) { ?>
-                <a href="./chat.php?id=<? echo $data['message_from'] ?>">
-                    <? echo '<img src="data:image/jpeg;base64,' . base64_encode($data['user_profileimage']) . '">'; ?>
-                    <? echo "<p> Диалог с " . $data['user_firstname'] . "</p>" ?>
-                </a>
-                <hr>
-            <? } ?>
-            <? $count = DB::queryCount("SELECT DISTINCT message_from, user_firstname, user_profileimage FROM `message`, `users` WHERE `users`.id_user = `message`.message_from AND message_to = $idUser UNION SELECT DISTINCT message_to, user_firstname, user_profileimage FROM `message`, `users` WHERE `users`.id_user = `message`.message_to AND message_from = $idUser");
-            if ($count === 0)
+            $messages = DB::queryAll("SELECT DISTINCT message_from, user_firstname, user_profileimage_path FROM `message`, `users` WHERE `users`.id_user = `message`.message_from AND message_to = $idUser UNION SELECT DISTINCT message_to, user_firstname, user_profileimage_path FROM `message`, `users` WHERE `users`.id_user = `message`.message_to AND message_from = $idUser");
+
+            if ($messages)
+            {
+                foreach ($messages as $data) { ?>
+                    <a href="./chat.php?id=<? echo $data['message_from'] ?>">
+                        <? echo '<img src="/upload/image/'. $data['user_profileimage_path'] . '">'; ?>
+                        <? echo "<p> Диалог с " . $data['user_firstname'] . "</p>" ?>
+                    </a>
+                    <hr>
+                <?php }
+            }
+            else
             { ?>
                 <hr> <p style="width: 100%;text-align: center;"> У вас нет диалогов </p>
             <?php } ?>
