@@ -1,7 +1,7 @@
 import 'https://unpkg.com/emoji-picker-element';
         
 let emojiPicker = document.querySelector('emoji-picker');
-let postArea = document.querySelector('#post-content');
+let textArea = document.querySelector('#text-content');
 let emojiButton = document.querySelector('.emoji');
 
 emojiButton.addEventListener('click', e =>
@@ -11,7 +11,8 @@ emojiButton.addEventListener('click', e =>
 
 emojiPicker.addEventListener('emoji-click', event => 
 {   
-    postArea.value += event.detail.unicode;
+    console.log(event.detail);
+    textArea.value += event.detail.emoji.unicode;
 });
 
 document.addEventListener('click', e => 

@@ -11,14 +11,24 @@ session_start();
 
   $idTo = $_GET['id'];
 
-  foreach ($sql = DB::queryAll("SELECT * FROM `message`, `users` WHERE `users`.id_user = `message`.message_from AND ((`message_from` = $idUser AND `message_to` = $idTo) OR (`message_from` = $idTo AND `message_to` = $idUser)) ORDER BY message_date") as $data)
+  $messages = DB::queryAll("SELECT * FROM `message`, `users` WHERE `users`.id_user = `message`.message_from AND ((`message_from` = $idUser AND `message_to` = $idTo) OR (`message_from` = $idTo AND `message_to` = $idUser)) ORDER BY message_date");
+
+  if ($messages)
   {
-    ?>
-      <div class="message">
-        <? echo '<img src="/upload/image/'. $data['user_profileimage_path'] . '" class="avatar">'; ?>
-        <p class="name"> <? echo $data['user_firstname']; ?> <span class="date"> <? echo $data['message_date']; ?> </span></p>
-        <p class="text"> <? echo $data['message_text']; ?></p>
-      </div>
-    <?
+      foreach ($messages  as $data)
+      {
+        ?>
+          <div class="message">
+            <? echo '<img src="/upload/image/'. $data['user_profileimage_path'] . '" class="avatar">'; ?>
+            <p class="name"> <? echo $data['user_firstname']; ?> <span class="date"> <? echo $data['message_date']; ?> </span></p>
+            <p class="text"> <? echo $data['message_text']; ?></p>
+          </div>
+        <?
+      }
   }
+  else
+  {
+    echo "<p style='text-align: center; margin: 55px 0;'> Здесь пока нет сообщений </p>";
+  }
+
   ?>

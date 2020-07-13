@@ -251,6 +251,18 @@ emoji-picker.hide
 }
 
 
+.media-controls
+{
+	padding: 0 15px;
+	display: flex;
+	align-items: center;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+
+	width: 100%;
+	margin: 15px 0;
+}
+
 @media screen and (max-width: 1200px)
 {
 	.content

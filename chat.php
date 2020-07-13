@@ -40,9 +40,9 @@ $nameUser = DB::query("SELECT user_firstname FROM users WHERE id_user = $idTo;")
         }
 
         setInterval(function() { showMSG(); }, 1000);
-        setTimeout(function() {
-            document.querySelector('#messages').scrollTop = document.querySelector('#messages').scrollHeight;
-        }, 1000);
+        
+        document.querySelector('#messages').scrollTop = document.querySelector('#messages').scrollHeight;
+        
 
         function sendMSG(e)
         {
@@ -51,11 +51,22 @@ $nameUser = DB::query("SELECT user_firstname FROM users WHERE id_user = $idTo;")
             let xhr = new XMLHttpRequest();
             xhr.open('POST', 'php/messageSend.php?id=<? echo $idTo ?>', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
             xhr.send(data);
+
+
+            xhr.onreadystatechange = function()
+            {
+                if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200)
+                {
+                    console.log(xhr.responseText);
+                }
+            };
+
             document.querySelector('.send textarea').value = '';
-            setTimeout(function() {
-                document.querySelector('#messages').scrollTop = document.querySelector('#messages').scrollHeight;
-            }, 1000);
+           
+
+            
         }
     </script>
 </head>
@@ -80,11 +91,20 @@ $nameUser = DB::query("SELECT user_firstname FROM users WHERE id_user = $idTo;")
             <div id="messages"></div>
             <hr>
             <form onsubmit="sendMSG(event);" method="post" class="send">
-                <textarea></textarea>
+                <textarea id="text-content"></textarea>
+                
+                <div class="media-controls">
+                    <div class="emoji">😀</div>
+                </div>
+                
+                <emoji-picker class="hide"></emoji-picker>
+
                 <button type="submit"> Отправить</button>
             </form>
         </div>
 
     </div>
+
+    <script type="module" src="/js/emoji.js"> </script>
 </body>
 </html>

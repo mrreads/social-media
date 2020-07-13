@@ -88,7 +88,7 @@ $idUser = (int)$_SESSION['id_user'];
                 }
                 else
                 { ?>
-                    <p style="width: 100%;text-align: center; "> Аудиозаписи отсуствуют </p>
+                    <p style="width: 100%;text-align: center; margin-top: 15px;"> Аудиозаписи отсуствуют </p>
                 <? } ?>
             </div>
         </div>

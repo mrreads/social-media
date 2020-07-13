@@ -12,3 +12,5 @@ session_start();
   $textMessage = $_POST['text'];
   
   $query = DB::query("INSERT INTO `message` (`id_message`, `message_text`, `message_date`, `message_from`, `message_to`) VALUES (NULL, '$textMessage', CURRENT_TIME(), $idUser, $idTo);");
+  
+  echo "INSERT INTO `message` (`id_message`, `message_text`, `message_date`, `message_from`, `message_to`) VALUES (NULL, '$textMessage', CURRENT_TIME(), $idUser, $idTo);";

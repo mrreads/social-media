@@ -91,5 +91,6 @@ if (isset($_POST['registerButton']))
                                     'defaultUser.jpg'
                                 );");
     
+    setcookie("message", "Вы успешно зарегистрировались.", time() + 2, '/');
     header('Location: ./../index.php');
 }
